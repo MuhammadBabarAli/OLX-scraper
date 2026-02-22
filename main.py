@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
+from ExtractProductData import extractProductData
 
 URL = "https://www.olx.com.pk/"
 categories = {
@@ -54,17 +55,15 @@ def urlMaker(query, category):
 
     return URL_query
 
-def extractHtml(body):
-    soup = BeautifulSoup(body, "html.parser")
-    return soup.prettify()
 
 URL_complete = urlMaker(search, category)
 print(URL_complete)
 req = Request(URL_complete, headers={"User-Agent": "Mozilla/5.0"})
 webpage = urlopen(req).read()
-extracted_html = extractHtml(webpage)
-
+extracted_html = extractProductData(webpage)
 print(extracted_html)
+
 with open('extracted_html.txt', 'w', encoding='utf-8') as f:
-    f.write(extracted_html)
+    for i in extracted_html:
+        f.write(str(i))
 
