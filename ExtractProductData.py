@@ -15,9 +15,11 @@ def extractProductData(body):
         prices_list.append(p.span.text)
 
     sub_titles = soup.findAll(attrs={'aria-label': 'Subtitle'})
+    sub_titles_list = []
     for s in sub_titles:
-        spans = s.findAll('span')
-    print(spans)
+        spans = s.findAll('span', attrs={'aria-label': True})
+    for sa in spans:
+        sub_titles_list.append(sa.span.text)
 
     locations = soup.findAll('span', attrs={'aria-label': 'Location'})
     locations_list = []
@@ -31,7 +33,7 @@ def extractProductData(body):
 
     print(titles_list)
     print(prices_list)
-    print(sub_titles)
+    print(sub_titles_list)
     print(locations_list)
     print(dates_list)
 

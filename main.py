@@ -61,7 +61,6 @@ print(URL_complete)
 req = Request(URL_complete, headers={"User-Agent": "Mozilla/5.0"})
 webpage = urlopen(req).read()
 extracted_html = extractProductData(webpage)
-print(extracted_html)
 
 with open('extracted_html.txt', 'w', encoding='utf-8') as f:
     for i in extracted_html:
