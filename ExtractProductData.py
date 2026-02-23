@@ -18,8 +18,8 @@ def extractProductData(body):
     sub_titles_list = []
     for s in sub_titles:
         spans = s.findAll('span', attrs={'aria-label': True})
-    for sa in spans:
-        sub_titles_list.append(sa.span.text)
+    for sl in spans:
+        sub_titles_list.append(sl.span.text)
 
     locations = soup.findAll('span', attrs={'aria-label': 'Location'})
     locations_list = []
